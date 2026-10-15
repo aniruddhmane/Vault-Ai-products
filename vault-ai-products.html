@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault.ai - Product Suite</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0A2F51;
+            --navy-2: #0D3A5C;
+            --sky: #2B9FD9;
+            --light-sky: #E8F5FB;
+            --white: #FFFFFF;
+            --text: #1A1A1A;
+            --muted: #666666;
+            --line: #DCE6EE;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        nav {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: var(--sky); }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-left: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto;
+            opacity: 0.92;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-head {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.75rem;
+        }
+
+        .product.coming .product-head {
+            background: #4A5560;
+        }
+
+        .product-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: var(--sky);
+            color: var(--white);
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .product.coming .product-tag {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .product-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-type {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .product-body {
+            padding: 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .purpose {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .capabilities {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .capabilities li {
+            font-size: 0.93rem;
+            padding: 0.5rem 0 0.5rem 1.4rem;
+            position: relative;
+            border-bottom: 1px solid var(--light-sky);
+        }
+
+        .capabilities li:last-child { border-bottom: none; }
+
+        .capabilities li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sky);
+        }
+
+        .product.coming .capabilities li::before {
+            background: #8A949C;
+        }
+
+        .customers {
+            margin-top: auto;
+            background: var(--light-sky);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            font-size: 0.92rem;
+        }
+
+        .customers strong { color: var(--navy); }
+
+        .suite-note {
+            background: var(--light-sky);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .suite-note h3 {
+            color: var(--navy);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .suite-note p {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 900px) {
+            .products { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            nav a { margin-left: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Vault<span>.ai</span></div>
+        <div>
+            <a href="#products">Products</a>
+            <a href="#suite">Suite</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>One Platform for Identity, Compliance and Operations</h1>
+        <p>Vault.ai is a product suite for India's lenders, fintechs and remittance providers, covering verification, transaction risk and case management.</p>
+    </section>
+
+    <section id="products" class="section">
+        <h2 class="section-title">Product Suite</h2>
+        <p class="section-subtitle">Three products that cover the full lifecycle, from onboarding a customer to reviewing their transactions.</p>
+
+        <div class="products">
+
+            <!-- Verify -->
+            <div class="product">
+                <div class="product-head">
+                    <span class="product-tag">Launching Q2 2026</span>
+                    <div class="product-name">Verify</div>
+                    <div class="product-type">Identity Verification Infrastructure</div>
+                </div>
+                <div class="product-body">
+                    <div class="label">Purpose</div>
+                    <p class="purpose">Help lenders, fintech companies and digital banks verify customer identities and onboard users with less manual review.</p>
+
+                    <div class="label">Capabilities</div>
+                    <ul class="capabilities">
+                        <li>Aadhaar verification</li>
+                        <li>PAN verification</li>
+                        <li>OCR and document intelligence</li>
+                        <li>Liveness detection</li>
+                        <li>Name matching</li>
+                        <li>Fraud and spoofing checks</li>
+                        <li>Verification workflow automation</li>
+                    </ul>
+
+                    <div class="customers"><strong>Customers:</strong> Lenders, NBFCs, Fintechs, Digital banks</div>
+                </div>
+            </div>
+
+            <!-- Comply -->
+            <div class="product coming">
+                <div class="product-head">
+                    <span class="product-tag">Next</span>
+                    <div class="product-name">Comply</div>
+                    <div class="product-type">Transaction Risk and Compliance Infrastructure</div>
+                </div>
+                <div class="product-body">
+                    <div class="label">Purpose</div>
+                    <p class="purpose">Help remittance providers and payment companies assess transaction risk before money moves.</p>
+
+                    <div class="label">Capabilities</div>
+                    <ul class="capabilities">
+                        <li>Sanctions screening</li>
+                        <li>PEP screening</li>
+                        <li>Adverse media monitoring</li>
+                        <li>Beneficiary verification</li>
+                        <li>Transaction risk scoring</li>
+                        <li>Corridor risk assessment</li>
+                        <li>Compliance decision engine</li>
+                    </ul>
+
+                    <div class="customers"><strong>Customers:</strong> Remittance providers, cross-border payment companies, fintechs handling international payments</div>
+                </div>
+            </div>
+
+            <!-- Flow -->
+            <div class="product coming">
+                <div class="product-head">
+                    <span class="product-tag">Next</span>
+                    <div class="product-name">Flow</div>
+                    <div class="product-type">Operations and Case Management Platform</div>
+                </div>
+                <div class="product-body">
+                    <div class="label">Purpose</div>
+                    <p class="purpose">Help operations, risk and compliance teams manage reviews, escalations and investigations.</p>
+
+                    <div class="label">Capabilities</div>
+                    <ul class="capabilities">
+                        <li>Manual review queues</li>
+                        <li>Case management</li>
+                        <li>Escalation workflows</li>
+                        <li>Audit logs</li>
+                        <li>Reporting</li>
+                        <li>Compliance copilot</li>
+                        <li>Investigator dashboard</li>
+                    </ul>
+
+                    <div class="customers"><strong>Customers:</strong> Compliance teams, risk teams, operations teams</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="suite" class="section" style="padding-top: 0;">
+        <div class="suite-note">
+            <h3>How the products fit together</h3>
+            <p>Verify confirms who the customer is. Comply assesses the risk of each transaction that customer makes. Flow gives teams a single place to review, escalate and audit the cases that either product raises.</p>
+        </div>
+    </section>
+
+    <footer>
+        Vault.ai · Identity, Compliance and Operations for India
+    </footer>
+
+</body>
+</html>
